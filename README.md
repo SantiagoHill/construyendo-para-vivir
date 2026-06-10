@@ -11,6 +11,7 @@
     /* ── Reset & base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { color-scheme: only light; }
+    html { background: #fff8f1 !important; filter: none !important; }
     :root {
       --verde:   #39503d;
       --amarillo:#ffba38;
@@ -105,6 +106,10 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      object-position: center center;
+    }
+    @media (max-width: 700px) {
+      .carousel-slide img { object-position: 67% center; }
     }
     .carousel-slide .slide-placeholder {
       width: 100%;
