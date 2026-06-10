@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#fff8f1" />
   <title>Construyendo para Vivir</title>
   <link href="https://fonts.googleapis.com/css2?family=Chewy&family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <style>
     /* ── Bloqueo total modo oscuro ── */
     :root { color-scheme: only light !important; }
@@ -236,12 +237,27 @@
     }
     .sobre-text p:last-child { margin-bottom: 0; }
     .sobre-subtitulo {
-      font-weight: 700;
+      font-family: 'Gagalin', 'Impact', 'Arial Black', sans-serif;
       color: var(--verde);
-      font-size: 1.05rem;
-      margin-top: 1.5rem;
-      margin-bottom: 0.75rem;
+      font-size: 1.4rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+      display: inline-block;
+      position: relative;
+      padding-bottom: 0.3rem;
     }
+    .sobre-subtitulo::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: var(--amarillo);
+      border-radius: 2px;
+      margin-top: 0.3rem;
+      transition: width 0.5s ease;
+    }
+    .sobre-subtitulo.aos-animate::after { width: 100%; }
     .sobre-lista {
       list-style: none;
       padding: 0;
@@ -267,11 +283,12 @@
     }
     .sobre-lista li strong { color: var(--verde); }
     .sobre-cta {
-      font-size: 1.1rem;
-      font-weight: 600;
+      font-family: 'Gagalin', 'Impact', 'Arial Black', sans-serif;
+      font-size: 1.25rem;
       color: var(--verde);
-      margin-top: 1rem;
-      font-style: italic;
+      margin-top: 2rem;
+      font-style: normal;
+      letter-spacing: 0.5px;
     }
     .sobre-badge {
       background: var(--verde);
@@ -419,6 +436,43 @@
     }
     footer .footer-icons a:hover { color: var(--blanco); transform: scale(1.15); }
     footer .footer-icons svg { width: 24px; height: 24px; display: block; }
+
+    /* ── KEN BURNS ── */
+    @keyframes kenburns {
+      0%   { transform: scale(1)    translate(0, 0); }
+      50%  { transform: scale(1.07) translate(-1%, -1%); }
+      100% { transform: scale(1)    translate(0, 0); }
+    }
+    .carousel-slide img { animation: kenburns 12s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .carousel-slide img { animation: none; }
+    }
+
+    /* ── WAVE entre carrusel y sobre nosotros ── */
+    .wave-divider { display: block; width: 100%; overflow: hidden; line-height: 0; margin-bottom: -2px; }
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ── HOVER mejorado en botón enviar ── */
+    .btn-enviar { transition: background 0.25s, transform 0.15s, letter-spacing 0.2s; }
+    .btn-enviar:hover { letter-spacing: 2px; }
+
+    /* ── HOVER mejorado en red-card ── */
+    .red-card { transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s; }
+    .red-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+
+    /* ── FADE IN del header al cargar ── */
+    @keyframes fadedown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    header { animation: fadedown 0.6s ease both; }
+
+    /* ── Línea animada bajo section-title ── */
+    .section-title::after {
+      transition: width 0.4s ease;
+      width: 60px;
+    }
+    .section-title:hover::after { width: 100%; }
   </style>
 </head>
 <body>
@@ -458,24 +512,30 @@
 
 </section>
 
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#fff8f1"/>
+  </svg>
+</div>
+
 <!-- SOBRE NOSOTROS -->
 <section class="sobre-nosotros" id="sobre-nosotros">
   <div class="section-inner">
-    <h2 class="section-title">Sobre nosotros</h2>
+    <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Sobre nosotros</h2>
     <div class="sobre-text">
-      <p>
+      <p data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">
         Somos Santi y Flor, estamos construyendo nuestro hogar en un contenedor de 40 pies para irnos a vivir al campo. Queremos salir del sistema tradicional de los alquileres caros y los préstamos de por vida para armar una vida más libre, simple y conectada con la naturaleza.
       </p>
-      <p>
+      <p data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
         No somos arquitectos, ingenieros ni expertos en construcción. Somos una pareja común con trabajos, facultad y rutinas exigentes que un día decidió dejar de postergar sus sueños y animarse a probar. Todo lo que sabemos lo vamos aprendiendo paso a paso, en nuestros ratos libres y fines de semana.
       </p>
-      <p class="sobre-subtitulo">Qué vas a encontrar acá:</p>
+      <p class="sobre-subtitulo" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">Qué vas a encontrar acá:</p>
       <ul class="sobre-lista">
-        <li><strong>El proceso real:</strong> Documentamos cada avance, cada acierto y también los pequeños errores de obra de forma honesta, sin filtros ni dramas inflados.</li>
-        <li><strong>Datos útiles:</strong> Compartimos presupuestos reales, lo que nos cuestan las herramientas y los materiales en Uruguay, y cómo resolvemos temas clave como la aislación térmica.</li>
-        <li><strong>Inspiración y comunidad:</strong> Creamos este espacio para ayudarte a perder el miedo y demostrarte que, si tenés ganas, vos también podés empezar.</li>
+        <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="350"><strong>El proceso real:</strong> Documentamos cada avance, cada acierto y también los pequeños errores de obra de forma honesta, sin filtros ni dramas inflados.</li>
+        <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="450"><strong>Datos útiles:</strong> Compartimos presupuestos reales, lo que nos cuestan las herramientas y los materiales en Uruguay, y cómo resolvemos temas clave como la aislación térmica.</li>
+        <li data-aos="fade-up" data-aos-duration="600" data-aos-delay="550"><strong>Inspiración y comunidad:</strong> Creamos este espacio para ayudarte a perder el miedo y demostrarte que, si tenés ganas, vos también podés empezar.</li>
       </ul>
-      <p class="sobre-cta">¿Y vos? ¿Te irías a vivir a un contenedor? ¡Acompañanos en esta aventura!</p>
+      <p class="sobre-cta" data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="650">¿Y vos? ¿Te irías a vivir a un contenedor? ¡Acompañanos en esta aventura!</p>
     </div>
   </div>
 </section>
@@ -483,9 +543,9 @@
 <!-- CONTACTO -->
 <section class="contacto" id="contacto">
   <div class="section-inner">
-    <h2 class="section-title">Contacto</h2>
-    <p class="contacto-intro">Si te interesa trabajar con nosotros o hacer colaboraciones podés escribirnos a <a href="mailto:contacto@construyendoparavivir.com">contacto@construyendoparavivir.com</a> o llenando el formulario.</p>
-    <div class="contacto-form">
+    <h2 class="section-title" data-aos="fade-right" data-aos-duration="700">Contacto</h2>
+    <p class="contacto-intro" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">Si te interesa trabajar con nosotros o hacer colaboraciones podés escribirnos a <a href="mailto:contacto@construyendoparavivir.com">contacto@construyendoparavivir.com</a> o llenando el formulario.</p>
+    <div class="contacto-form" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
       <div>
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" placeholder="Tu nombre completo" />
@@ -506,31 +566,31 @@
 <!-- REDES -->
 <section class="redes" id="redes">
   <div class="section-inner">
-    <h2 class="section-title">Seguinos en redes</h2>
+    <h2 class="section-title" data-aos="fade-up" data-aos-duration="700">Seguinos en redes</h2>
     <div class="redes-grid">
 
-      <a class="red-card" href="https://www.instagram.com/construyendoparavivir/" target="_blank" rel="noopener">
+      <a class="red-card" href="https://www.instagram.com/construyendoparavivir/" target="_blank" rel="noopener" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="100">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
         </svg>
         <span>Instagram</span>
       </a>
 
-      <a class="red-card" href="https://www.facebook.com/profile.php?id=61589993397244&locale=es_LA" target="_blank" rel="noopener">
+      <a class="red-card" href="https://www.facebook.com/profile.php?id=61589993397244&locale=es_LA" target="_blank" rel="noopener" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
         </svg>
         <span>Facebook</span>
       </a>
 
-      <a class="red-card" href="https://www.tiktok.com/discover/construyendo-para-vivir" target="_blank" rel="noopener">
+      <a class="red-card" href="https://www.tiktok.com/discover/construyendo-para-vivir" target="_blank" rel="noopener" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
         </svg>
         <span>TikTok</span>
       </a>
 
-      <a class="red-card" href="https://www.youtube.com/@ConstruyendoParaVivir" target="_blank" rel="noopener">
+      <a class="red-card" href="https://www.youtube.com/@ConstruyendoParaVivir" target="_blank" rel="noopener" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="400">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22.54 6.42A2.78 2.78 0 0 0 20.59 4.5C19 4 12 4 12 4s-7 0-8.59.5A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.5C5 20 12 20 12 20s7 0 8.59-.5a2.78 2.78 0 0 0 1.95-1.92A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
           <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/>
@@ -570,11 +630,19 @@
   <p>&copy; 2025 Construyendo para Vivir. Todos los derechos reservados.</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
   // Menú hamburguesa
   function toggleMenu() {
     document.getElementById('navMobile').classList.toggle('open');
   }
+
+  // Inicializar AOS
+  AOS.init({
+    once: true,
+    offset: 60,
+    easing: 'ease-out-cubic'
+  });
 </script>
 </body>
 </html>
