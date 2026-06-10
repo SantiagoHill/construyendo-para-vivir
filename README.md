@@ -1,17 +1,47 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="background:#fff8f1 !important; color:#111 !important;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="only light" />
+  <meta name="color-scheme" content="light only" />
   <meta name="supported-color-schemes" content="light" />
+  <meta name="theme-color" content="#fff8f1" />
   <title>Construyendo para Vivir</title>
   <link href="https://fonts.googleapis.com/css2?family=Chewy&family=League+Spartan:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* ── Bloqueo total modo oscuro ── */
+    :root { color-scheme: only light !important; }
+    html, body, * { forced-color-adjust: none !important; }
+    @media (prefers-color-scheme: dark) {
+      html { background: #fff8f1 !important; color: #111 !important; filter: none !important; }
+      body { background: #fff8f1 !important; color: #111 !important; }
+      * { color: inherit !important; background-color: inherit !important; border-color: inherit !important; }
+      header { background: #39503d !important; color: #fff8f1 !important; }
+      header * { color: inherit !important; }
+      .logo { color: #ffba38 !important; }
+      nav a, .nav-mobile a { color: #fff8f1 !important; }
+      nav a:hover { background: #ffba38 !important; color: #111 !important; }
+      .section-title { color: #39503d !important; }
+      .sobre-text p, .sobre-lista li, .contacto-intro { color: #333 !important; }
+      .sobre-subtitulo, .sobre-lista li strong, .sobre-cta { color: #39503d !important; }
+      .sobre-lista li::before { color: #ffba38 !important; }
+      .contacto-intro a { color: #39503d !important; }
+      .contacto-form { background: #fff8f1 !important; border-color: #e0d4c8 !important; }
+      .contacto-form input, .contacto-form textarea { background: #f0e8df !important; color: #111 !important; border-color: #d0c8c0 !important; }
+      .contacto-form label { color: #39503d !important; }
+      .btn-enviar { background: #39503d !important; color: #ffba38 !important; }
+      .redes { background: #39503d !important; }
+      .redes .section-title { color: #ffba38 !important; }
+      .red-card { color: #fff8f1 !important; background: rgba(255,255,255,0.1) !important; }
+      footer { background: #2b3d2e !important; color: rgba(255,255,255,0.7) !important; }
+      footer .footer-icons a { color: #ffba38 !important; }
+      section { background: #fff8f1 !important; }
+      .sobre-nosotros, .contacto { background: #fff8f1 !important; }
+    }
+
     /* ── Reset & base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { color-scheme: only light; }
-    html { background: #fff8f1 !important; filter: none !important; }
+    html { background: #fff8f1 !important; filter: none !important; scroll-behavior: smooth; }
     :root {
       --verde:   #39503d;
       --amarillo:#ffba38;
