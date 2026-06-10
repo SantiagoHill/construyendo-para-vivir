@@ -7,6 +7,7 @@
   <style>
     /* ── Reset & base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { color-scheme: only light; }
     :root {
       --verde:   #39503d;
       --amarillo:#ffba38;
